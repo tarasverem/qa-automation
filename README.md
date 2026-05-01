@@ -1,17 +1,26 @@
-# QA Automation — Booking.com + REST API
+# qa-automation
 
 Playwright + TypeScript test suite covering UI and API automation.
 
-## What's inside
-
-- **UI tests** — car rental search flow on Booking.com
-- **API tests** — GET, POST, DELETE endpoints on restful-api.dev
+## Project structure
+qa-automation/
+├── tests/
+│   ├── car-rental.spec.ts    # UI tests
+│   └── api.spec.ts           # API tests
+├── pages/
+│   └── CarRentalPage.ts      # Page Object for Booking.com
+├── api/
+│   └── ObjectsApi.ts         # API client for restful-api.dev
+├── helpers/
+│   └── dataGenerator.ts      # Dynamic test data with faker
+└── playwright.config.ts      # Config with baseURL per project
 
 ## Tech stack
 
-- [Playwright](https://playwright.dev/)
+- Playwright
 - TypeScript
 - Node.js
+- faker.js
 
 ## Prerequisites
 
@@ -49,12 +58,7 @@ Run with browser visible:
 npx playwright test --headed
 ```
 
-Run in a specific browser:
-```bash
-npx playwright test --project=chromium
-```
-
-View HTML report after run:
+View HTML report:
 ```bash
 npx playwright show-report
 ```
@@ -67,12 +71,11 @@ npx playwright show-report
 |------|-------------|
 | TC-001 | Successful search with valid data |
 | TC-007 | Search without entering driver age |
-| TC-010 | Driver age below minimum (under 18) |
+| TC-009 | Driver age boundary value — 18 |
+| TC-010 | Driver age below minimum — under 18 |
 | N-001 | Search with empty pick-up location |
 
-> Note: Booking.com may trigger a CAPTCHA for automated browsers.
-> TC-001 handles this gracefully — if CAPTCHA is detected the test
-> logs a warning and passes, since the search was triggered successfully.
+> Note: Booking.com may show a CAPTCHA for automated browsers. This is handled gracefully — the test logs a warning and passes since the search was triggered successfully.
 
 ### API — restful-api.dev
 
