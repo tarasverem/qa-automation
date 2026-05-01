@@ -21,7 +21,7 @@ Playwright + TypeScript test suite covering UI and API automation.
 ## Installation
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/tarasverem/qa-automation.git
 cd qa-automation
 npm install
 npx playwright install
